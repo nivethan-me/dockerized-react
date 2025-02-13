@@ -1,50 +1,39 @@
-# React + TypeScript + Vite
+# Vite + React + PNPM + Docker
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This repository demonstrates how to Dockerize a Vite + React application using PNPM as the package manager. It includes a multi-stage Dockerfile for efficient builds and a lightweight production-ready setup.(~200mb image)
 
-Currently, two official plugins are available:
+## Prerequisites
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Before you begin, ensure you have the following installed:
 
-## Expanding the ESLint configuration
+  - Docker
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+  - Node.js
 
-- Configure the top-level `parserOptions` property like this:
+  - PNPM
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+--- 
+
+## Getting Started
+
+### 1. Clone the Repository
+
+```
+git clone https://github.com/nivethan-me/dockerized-react.git
+cd dockerized-react
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+### 2. Build the Docker Image
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
 ```
+docker build -t dockerized-react .
+```
+
+### 3. Run the Docker Container
+
+```
+docker run -p 5173:5173 dockerized-react
+```
+The app will be available at http://localhost:5173.
+
+
